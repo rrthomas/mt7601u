@@ -17,10 +17,6 @@
 #include <linux/etherdevice.h>
 #include <linux/version.h>
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 19, 0)
-#error Your kernel is too old, please upgrade to at least 3.19
-#endif
-
 static int mt7601u_start(struct ieee80211_hw *hw)
 {
 	struct mt7601u_dev *dev = hw->priv;
@@ -411,7 +407,6 @@ const struct ieee80211_ops mt7601u_ops = {
 	.conf_tx = mt7601u_conf_tx,
 	.sw_scan_start = mt7601u_sw_scan,
 	.sw_scan_complete = mt7601u_sw_scan_complete,
-/*	.flush = mt7601u_flush,*/
 	.ampdu_action = mt76_ampdu_action,
 	.sta_rate_tbl_update = mt76_sta_rate_tbl_update,
 	.set_rts_threshold = mt7601u_set_rts_threshold,
