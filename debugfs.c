@@ -94,7 +94,7 @@ static const struct file_operations fops_ampdu_stat = {
 	.release = single_release,
 };
 
-static int
+static ssize_t
 mt7601u_eeprom_read(struct file *file, char __user *buf,
 		    size_t count, loff_t *f_pos)
 {
