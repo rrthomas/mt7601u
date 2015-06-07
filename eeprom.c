@@ -339,6 +339,11 @@ mt7601u_config_tx_power_per_rate(struct mt7601u_dev *dev, u8 *eeprom)
 
 	for (i = 0; i < 5; i++) {
 		val = get_unaligned_le32(eeprom + MT_EE_TX_POWER_BYRATE(i));
+		if (val == 0xffffffff) {
+			dev_warn(dev->dev,
+				 "Warning: device EEPROM per-rate power table is empty!\n");
+			return;
+		}
 
 		mt7601u_save_power_rate(dev, bw40_delta, val, i);
 
